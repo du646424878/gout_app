@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#F5FFFA">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/title_bar"
+        android:orientation="horizontal"
+        android:gravity="right"
+        >
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/profile_title"
+            android:layout_gravity="center_vertical"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:text="个人信息"
+            android:textColor="@color/title_text"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            />
+        <Button
+            android:id="@+id/add_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="修改"
+            android:gravity="right"
+            android:paddingRight="5dp"
+            android:textColor="@color/title_text"
+            android:background="@color/title_bar"
+            />
+
+    </LinearLayout>
+
+
+        <WebView
+            android:id="@+id/user_info_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+</LinearLayout>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html style="height: 100%; width:100%">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/easyui/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/css/easyui/icon.css">
+</head>
+
+<body>
+
+    <table id="tt" class="" pageSize="20" style="width:100%;height:100%" url="/admin/db/patientengview/gets" title="患者详情" iconCls="icon-save" rownumbers="true" pagination="true" singleSelect="true" data-options="toolbar:'#toolbar',fit:true">
+        <thead>
+            <div>
+                <tr>
+                    <th field="patientid" width="9%">患者ID</th>
+                    <th field="username" width="9%">患者账号</th>
+                    <th field="realname" width="9%">真实姓名</th>
+                    <th field="gender" width="5%">性别</th>
+                    <th field="height" width="9%">身高</th>
+                    <th field="weight" width="9%">体重</th>
+                    <th field="nation" width="9%">民族</th>
+                    <th field="nativeplace" width="12%">籍贯</th>
+                    <th field="job" width="12%">工作</th>
+                    <th field="email" width="13%">邮箱</th>
+                    <th field="havetophus">有无痛风石形成</th>
+                    <th field="b_modeus">有无泌尿结石</th>
+                    <th field="havehypertension">有无高血压</th>
+                    <th field="havediabetes">有无糖尿病</th>
+                    <th field="haveheartdisease">有无心脏病</th>
+                    <th field="havehlp">有无高脂血症</th>
+                    <th field="haveotherdisease">有无其他未提及疾病</th>
+                    <th field="hypertensionmedicine">高血压药物</th>
+                    <th field="diabetesmedicine">糖尿病药物</th>
+                    <th field="heartdiseasemedicine">心脏病药物</th>
+                    <th field="hlpmedicine">高脂血症药物</th>
+                    <th field="otherdiseasemedicine">其他病症药物</th>
+                </tr>
+            </div>
+
+        </thead>
+        <div id="toolbar">
+            <!--<button id="edit" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑用户</button>-->
+            <button class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="window.open('/admin/users/patientview/gets/sheet','_self')">下载所有用户信息</button>
+            <button id="" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="download_all_week()">下载所有周信息</button>
+            <button id="" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="download_all_month()">下载所有月信息</button>
+            <button id="week" class="easyui-linkbutton" iconCls="icon-search" plain="true">查看周信息</button>
+            <button id="month" class="easyui-linkbutton" iconCls="icon-search" plain="true">查看月信息</button>
+            <button id="onload_week" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="onload_week()">下载此人周信息</button>
+            <button id="onload_month" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="onload_month()">下载此人月信息</button>
+
+        </div>
+    </table>
+    <div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
+        <form id="fm" method="post">
+            <div class="fitem">
+                <label style="width: 15%">患者ID</label>
+                <input name="patientid" class="easyui-validatebox" required="true">
+            </div>
+            <div class="fitem">
+                <label style="width: 15%">患者账号</label>
+                <input name="username" class="easyui-validatebox" required="true">
+            </div>
+            <div class="fitem">
+                <label style="width: 15%">真实姓名</label>
+                <input name="realname" class="easyui-validatebox" required="true">
+            </div>
+            <div class="fitem">
+                <label style="width: 15%">性别</label>
+                <input name="gender" class="easyui-validatebox" required="true">
+            </div>
+            <div class="fitem">
+                <label style="width: 15%">身高</label>
+                <input name="height" class="easyui-validatebox" required="true">
+            </div>
+            <div class="fitem">
+                <label style="width: 15%">体重</label>
+                <input name="weight" class="easyui-validatebox" required="true">
+            </div>
+            <div class="fitem">
+                <label style="width: 15%">民族</label>
+                <input name="nation" class="easyui-validatebox" required="true">
+            </div>
+            <div class="fitem">
+                <label style="width: 15%">籍贯</label>
+                <input name="nativeplace" class="easyui-validatebox" required="true">
+            </div>
+            <div class="fitem">
+                <label style="width: 15%">工作</label>
+                <input name="job" class="easyui-validatebox" required="true">
+            </div>
+            <div class="fitem">
+                <label style="width: 15%">邮箱</label>
+                <input name="email" class="easyui-validatebox" required="true" validType="email">
+            </div>
+        </form>
+    </div>
+    <div id="dlg-buttons">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Save</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+    </div>
+    <div id="week_window" class="easyui-window" pageSize="20" maximized="true" title="Modal Window" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:500px">
+        <table id="week_excel" url="" class="easyui-datagrid" style="width:100%;height:100%" title="患者周信息" iconCls="icon-save" rownumbers="true" pagination="true" singleSelect="true">
+            <thead>
+                <tr>
+                    <th field="主食">每日主食</th>
+                    <th field="主食量">主食量</th>
+                    <th field="口味习惯">口味习惯</th>
+                    <th field="饮食偏好">饮食偏好</th>
+                    <th field="饮酒习惯">饮酒种类</th>
+                    <th field="每日鱼肉">每日鱼肉量</th>
+                    <th field="每日海鲜">每日海鲜量</th>
+                    <th field="每日牛肉">每日牛肉量</th>
+                    <th field="每日猪肉">每日猪肉量</th>
+                    <th field="每日家禽">每日家禽量</th>
+                    <th field="每日内脏">每日内脏量</th>
+                    <th field="每日蔬菜">每日绿蔬量</th>
+                    <th field="每日豆制品">每日豆制品量</th>
+                    <th field="每日鸡蛋">每日鸡蛋量</th>
+                    <th field="每日坚果">每日坚果量</th>
+                    <th field="每日水果">每日水果量</th>
+                    <th field="每日食盐">每日食盐量</th>
+                    <th field="每日啤酒">每日量啤酒</th>
+                    <th field="每日奶制品">每日牛奶量</th>
+                    <th field="每日白酒">每日白酒量</th>
+                    <th field="每日红酒">每日红酒量</th>
+                    <th field="饮茶种类">每日饮茶种类</th>
+                    <th field="每日饮茶">每日饮茶量</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div id="month_window" class="easyui-window " maximized="true" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:50%;height:70%">
+        <table id="month_excel" url="" pageSize="20" class="easyui-datagrid" style="width:100%;height:100%" title="患者月信息" iconCls="icon-save" rownumbers="true" pagination="true" singleSelect="true">
+            <thead>
+                <tr>
+                    <th field="患者ID">患者ID</th>
+                    <th field="患者姓名">患者姓名</th>
+                    <th field="医生姓名">医生姓名</th>
+                    <th field="病程">病程(天)</th>
+                    <th field="是否关节痛">是否关节痛</th>
+                    <th field="疼痛部位">疼痛部位</th>
+                    <th field="是否肿胀">是否肿胀</th>
+                    <th field="肿胀部位">肿胀部位</th>
+                    <th field="发作前是否有饮食变化">发作前是否有饮食变化</th>
+                    <th field="发作前是否运动">发作前是否运动</th>
+                    <th field="血沉">血沉(mm/h)</th>
+                    <th field="C反应蛋白">C反应蛋白(mg/dL)</th>
+                    <th field="尿酸">尿酸(umol/L)</th>
+                    <th field="甘油三酯">甘油三酯(mmol/L)</th>
+                    <th field="总胆固醇">总胆固醇(mmol/L)</th>
+                    <th field="天门冬氨酸氨基转移酶">天门冬氨酸氨基转移酶(U/L)</th>
+                    <th field="丙氨酸氨基转移酶">丙氨酸氨基转移酶(U/L)</th>
+                    <th field="肌酐">肌酐(umol/L)</th>
+                    <th field="血常规">血常规</th>
+                    <!--<th field="有无痛风石形成">有无痛风石形成</th>
+                    <th field="有无泌尿结石">有无泌尿结石</th>
+                    <th field="有无高血压">有无高血压</th>
+                    <th field="有无糖尿病">有无糖尿病</th>
+                    <th field="有无心脏病">有无心脏病</th>
+                    <th field="有无高脂血症">有无高脂血症</th>
+                    <th field="有无其他未提及疾病">有无其他未提及疾病</th>
+                    <th field="高血压药物">高血压药物</th>
+                    <th field="糖尿病药物">糖尿病药物</th>
+                    <th field="心脏病药物">心脏病药物</th>
+                    <th field="高脂血症药物">高脂血症药物</th>
+                    <th field="其他病症药物">其他病症药物</th>-->
+                    <th field="糖皮质激素剂量">糖皮质激素剂量</th>
+                    <th field="秋水仙碱剂量">秋水仙碱剂量</th>
+                    <th field="别嘌醇剂量">别嘌醇剂量</th>
+                    <th field="苯溴马隆剂量">苯溴马隆剂量</th>
+                    <th field="非甾体抗炎药剂量">非甾体抗炎药剂量</th>
+                    <th field="非布司他剂量">非布司他剂量</th>
+                    <th field="创建时间">创建时间</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <!--<div style="margin-top: 5px">
+        <p style="width: 100%;text-align: center">痛风随访系统</p>
+        <p style="width: 100%;text-align: center">版权所有 Copyright © 2016 UESTC</p>
+    </div>-->
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.easyui.min.js"></script>
+<script src="/js/basic_information.js"></script>
+
+</html>

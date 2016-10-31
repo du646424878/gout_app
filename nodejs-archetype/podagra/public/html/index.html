@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <title>痛风随访系统</title>
+    <link href="/css/logindemo/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/easyui/material/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/css/easyui/icon.css">
+</head>
+
+<body class="easyui-layout">
+    <!--顶部-->
+    <div data-options="region:'north'" style="text-align:center">
+        <p>痛风随访系统</p>
+    </div>
+    <!--底部-->
+    <div data-options="region:'south'" style="text-align:center">
+        <p>UESTC SS YF_STUDIO 2016</p>
+    </div>
+    <!--左部-->
+    <div data-options="region:'west',split:true" title="管理" style="width:15%;padding:15px">
+        <a href="#" onclick="addTab('患者信息','/html/basic_information.html')">患者信息</a><br>
+        <a href="#" onclick="addTab('新闻管理','/html/news_information.html')">新闻管理</a><br>
+        <a href="#" onclick="$('#pass').dialog('open')">修改密码</a><br>
+        <a href="#" onclick="logout()">注销</a>
+    </div>
+    <!--主体部分 这里是一个tabs-->
+    <div data-options="region:'center'" class="easyui-tabs" id="estabs">
+        <div title="欢迎" style="padding:10px">
+            <p style="font-size:14px">欢迎来到痛风随访系统<br> 请点击左边选择更多操作</p>
+        </div>
+    </div>
+    <!--密码修改 dialog-->
+    <div id="pass" class="easyui-dialog" title="修改密码" data-options="iconCls:'icon-save',closed:true" style="width:400px;height:200px;padding:10px">
+        <div>
+            <form id="pass_form">
+                <table>
+                    <tr>
+                        <td>原密码:</td>
+                        <td>
+                            <input class="easyui-textbox" type="password" name="oldpassword" data-options="required:true"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>新密码:</td>
+                        <td><input class="easyui-textbox" type="password" name="password" data-options="required:true"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>重复新密码:</td>
+                        <td>
+                            <input class="easyui-textbox" type="password" name="password_valid" data-options="required:true"></input>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="dlg-buttons">
+            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="change_password()">Submit</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#pass').dialog('close')">Cancel</a>
+        </div>
+    </div>
+</body>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/htmlindex.js"></script>
+<script src="/js/jquery.easyui.min.js"></script>
+
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:orientation="vertical"
+   >
+
+    <Button
+        android:id="@+id/meizhou_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:padding="10dp"
+        android:text="每周信息"
+        android:textSize="15sp"
+        android:textColor="#000000"/>
+
+    <Button
+        android:id="@+id/meiyue_btn"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="每月信息"
+        android:textSize="15sp"
+        android:textColor="#000000"/>
+
+</LinearLayout>

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%= article&&article.title %>
+    </title>
+
+</head>
+
+<body>
+    <!--<link href="/css/logindemo/bootstrap.css" rel="stylesheet">
+    <script src="/js/jquery.min.js"></script>-->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="/UEditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/UEditor/ueditor.all.js"></script>
+    <script>
+        $(document).ready(function() {
+            var ue = UE.getEditor('article-editor', {
+                toolbars: [
+                    [
+                        'source', '|', 'undo', 'redo', '|',
+                        'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                        'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+                        'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+                        'directionalityltr', 'directionalityrtl', 'indent', '|',
+                        // 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+                        'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                        'simpleupload', 'pagebreak', '|',
+                        'horizontal', 'date', 'time', '|',
+                        // 'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
+                        // 'print', 'preview', 'searchreplace', 'drafts', 'help', 'commit',
+                    ]
+                ]
+            });
+            suburl = "<%- article?'/admin/db/appnews/update/'+article.id:'/admin/db/appnews/insert' %>"
+            $("#submit").click(function() {
+                var essay_content = ue.getContent();
+                var essay_title = $("#title").val();
+                var regex = /<img.*?src="(.*?)"/;
+                var re_result = regex.exec(essay_content);
+                var src = undefined;
+                if (re_result != null) src = re_result[1];
+                $.post(suburl, {
+                    jsondata: JSON.stringify({
+                        <%- article&&"'id':"+article.id+"," %>
+                        "title": essay_title,
+                        "content": essay_content,
+                        "intro": essay_content.replace(/<[^>]+>/g, "").substr(0, 20),
+                        "url": "base id",
+                        "img": src
+                    })
+                }, (data, status) => {
+                    if (status) {
+                        alert("保存成功");
+                        location.reload();
+                    } else {
+                        alert("保存失败");
+                    }
+                });
+            })
+        })
+    </script>
+    <div>
+        <div class="modal-body">
+            <input type="text" class="form-control" id="title" value="<%= article&&article.title %>">
+        </div>
+        <!-- 加载编辑器的容器 -->
+        <script style="margin:20px;height:400px" id="article-editor" name="article-editor" type="text/plain">
+            <%- article&&article.content %>
+        </script>
+        <div class="modal-body">
+
+            <button id="submit" type="button" class="btn">
+                   提交
+         </button></div>
+
+    </div>
+</body>
+
+</html>

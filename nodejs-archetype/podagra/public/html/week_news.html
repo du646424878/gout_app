@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/wechatmain.css">
+    <script src="../js/jquery.js"></script>
+    <script src="/js/weui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#button").click(function() {
+                var array = {
+                    staplefood: "",
+                    staplefoodamount: "",
+                    taste: "",
+                    dietarypreference: "",
+                    drinktype: "",
+                    fieldset: "",
+                    seafoodpd: "",
+                    beefpd: "",
+                    fishpd: "",
+                    porkpd: "",
+                    poultrypd: "",
+                    visceralpd: "",
+                    vegetablepd: "",
+                    beanpd: "",
+                    eggpd: "",
+                    nutpd: "",
+                    fruitpd: "",
+                    saltpd: "",
+                    beerpd: "",
+                    milkpd: "",
+                    liquorpd: "",
+                    wirepd: "",
+                    teatype: "",
+                    teapd: ""
+                }
+                var b = 0;
+                $("fieldset").each(function() {
+                    var $a = $(this).find("input");
+                    if ($("input[name=" + $a.attr("name") + "]:checked").val() == undefined) {
+                        var t = $('#' + $a.attr("name") + '1').offset().top;
+                        $(window).scrollTop(t);
+                        $.weui.topTips('您有未选择的选项', {
+                            duration: 1000
+                        });
+                        b = 1;
+                        return false;
+                    }
+                })
+                for (var key in array) {
+                    array[key] = $("input[name=" + key + "]:checked").val();
+                }
+                if (b != 1) {
+                    $.post("/admin/records/addcurrentuserweekrecord", {
+                            jsondata: JSON.stringify(array)
+                        },
+                        function(data, status) {
+                            if (data.success) {
+                                $.weui.toast('提交成功', {
+                                    duration: 1000
+                                });
+                                window.location.href = "/html/week_news_list.html"
+                            } else {
+                                alert("修改失败")
+                            }
+                        }, "json");
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="weui_cells_title">
+        <h1 class="page_title">每周信息</h1>
+    </div>
+    <form>
+        <div class="weui_cells_title">每日主食</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="staplefood1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>米饭</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="staplefood" id="staplefood1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="staplefood2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>面</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="staplefood" class="weui_check" id="staplefood2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="staplefood3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>粥</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="staplefood" class="weui_check" id="staplefood3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="staplefood4">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>面包</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="staplefood" class="weui_check" id="staplefood4" value="4">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="staplefood5">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>方便食品</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="staplefood" class="weui_check" id="staplefood5" value="5">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="staplefood6">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>其他</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="staplefood" class="weui_check" id="staplefood6" value="6">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">主食量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="staplefoodamount0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="staplefoodamount" id="staplefoodamount0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="staplefoodamount1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1-250g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="staplefoodamount" class="weui_check" id="staplefoodamount1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="staplefoodamount2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>251-500g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="staplefoodamount" class="weui_check" id="staplefoodamount2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="staplefoodamount3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>500g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="staplefoodamount" class="weui_check" id="staplefoodamount3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">口味习惯</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="taste1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>不辣</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="taste" id="taste1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="taste2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>微辣</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="taste" class="weui_check" id="taste2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="taste3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>中辣</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="taste" class="weui_check" id="taste3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="taste4">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>极辣</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="taste" class="weui_check" id="taste4" value="4">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">饮酒种类</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="drinktype1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>啤酒</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="drinktype" id="drinktype1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="drinktype2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>白酒</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="drinktype" class="weui_check" id="drinktype2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="drinktype3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>红酒</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="drinktype" class="weui_check" id="drinktype3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="drinktype4">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>不饮</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="drinktype" class="weui_check" id="drinktype4" value="4">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">饮食偏好</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="dietarypreference1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>海鲜</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="dietarypreference" id="dietarypreference1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="dietarypreference2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>红肉</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="dietarypreference" class="weui_check" id="dietarypreference2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="dietarypreference3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>豆类</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="dietarypreference" class="weui_check" id="dietarypreference3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="dietarypreference4">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>甜食</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="dietarypreference" class="weui_check" id="dietarypreference4" value="4">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="dietarypreference5">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>蔬菜</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="dietarypreference" class="weui_check" id="dietarypreference5" value="5">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="dietarypreference6">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>其他</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="dietarypreference" class="weui_check" id="dietarypreference6" value="6">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日鱼肉量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="fishpd0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="fishpd" id="fishpd0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="fishpd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1-250g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="fishpd" class="weui_check" id="fishpd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="fishpd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>251-500g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="fishpd" class="weui_check" id="fishpd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="fishpd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>500g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="fishpd" class="weui_check" id="fishpd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日海鲜量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="seafoodpd0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="seafoodpd" id="seafoodpd0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="seafoodpd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1-250g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="seafoodpd" class="weui_check" id="seafoodpd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="seafoodpd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>251-500g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="seafoodpd" class="weui_check" id="seafoodpd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="seafoodpd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>500g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="seafoodpd" class="weui_check" id="seafoodpd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日牛肉量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="beefpd0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="beefpd" id="beefpd0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="beefpd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1-250g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="beefpd" class="weui_check" id="beefpd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="beefpd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>251-500g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="beefpd" class="weui_check" id="beefpd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="beefpd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>500g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="beefpd" class="weui_check" id="beefpd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日猪肉量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="porkpd0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="porkpd" id="porkpd0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="porkpd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1-250g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="porkpd" class="weui_check" id="porkpd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="porkpd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>251-500g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="porkpd" class="weui_check" id="porkpd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="porkpd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>500g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="porkpd" class="weui_check" id="porkpd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日家禽量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="poultrypd0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="poultrypd" id="poultrypd0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="poultrypd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1-250g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="poultrypd" class="weui_check" id="poultrypd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="poultrypd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>251-500g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="poultrypd" class="weui_check" id="poultrypd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="poultrypd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>500g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="poultrypd" class="weui_check" id="poultrypd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日内脏量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="visceralpd0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="visceralpd" id="visceralpd0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="visceralpd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1-250g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="visceralpd" class="weui_check" id="visceralpd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="visceralpd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>251-500g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="visceralpd" class="weui_check" id="visceralpd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="visceralpd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>500g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="visceralpd" class="weui_check" id="visceralpd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日绿蔬量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="vegetablepd0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="vegetablepd" id="vegetablepd0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="vegetablepd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1-250g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="vegetablepd" class="weui_check" id="vegetablepd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="vegetablepd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>251-500g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="vegetablepd" class="weui_check" id="vegetablepd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="vegetablepd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>500g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="vegetablepd" class="weui_check" id="vegetablepd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日豆制品量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="beanpd0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="beanpd" id="beanpd0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="beanpd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1-250g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="beanpd" class="weui_check" id="beanpd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="beanpd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>251-500g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="beanpd" class="weui_check" id="beanpd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="beanpd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>500g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="beanpd" class="weui_check" id="beanpd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日鸡蛋量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="eggpd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0个</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="eggpd" id="eggpd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="eggpd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1个</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="eggpd" class="weui_check" id="eggpd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="eggpd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>2个</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="eggpd" class="weui_check" id="eggpd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="eggpd4">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>3个</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="eggpd" class="weui_check" id="eggpd4" value="4">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="eggpd5">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>4个</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="eggpd" class="weui_check" id="eggpd5" value="5">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="eggpd6">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>5个即以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="eggpd" class="weui_check" id="eggpd6" value="6">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日坚果量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="nutpd0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="nutpd" id="nutpd0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="nutpd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1-100g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="nutpd" id="nutpd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="nutpd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>101-200g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="nutpd" class="weui_check" id="nutpd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="nutpd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>201-300g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="nutpd" class="weui_check" id="nutpd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="nutpd4">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>301-400g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="nutpd" class="weui_check" id="nutpd4" value="4">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="nutpd5">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>401-500g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="nutpd" class="weui_check" id="nutpd5" value="5">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="nutpd6">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>500g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="nutpd" class="weui_check" id="nutpd6" value="6">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日水果量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="fruitpd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0个</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="fruitpd" id="fruitpd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="fruitpd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1个</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="fruitpd" class="weui_check" id="fruitpd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="fruitpd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>2个</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="fruitpd" class="weui_check" id="fruitpd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="fruitpd4">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>3个</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="fruitpd" class="weui_check" id="fruitpd4" value="4">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="fruitpd5">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>4个</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="fruitpd" class="weui_check" id="fruitpd5" value="5">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="fruitpd6">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>5个即以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="fruitpd" class="weui_check" id="fruitpd6" value="6">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日食盐量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="saltpd0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="saltpd" id="saltpd0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="saltpd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0-6g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="saltpd" class="weui_check" id="saltpd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="saltpd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>6-12g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="saltpd" class="weui_check" id="saltpd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="saltpd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>12-18g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="saltpd" class="weui_check" id="saltpd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="saltpd4">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>18g及以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="saltpd" class="weui_check" id="saltpd4" value="4">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日啤酒量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="beerpd0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="beerpd" id="beerpd0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="beerpd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1-500ml</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="beerpd" class="weui_check" id="beerpd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="beerpd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>501-1000ml</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="beerpd" class="weui_check" id="beerpd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="beerpd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1000ml以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="beerpd" class="weui_check" id="beerpd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日牛奶量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="milkpd0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="milkpd" id="milkpd0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="milkpd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0-250ml</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="milkpd" class="weui_check" id="milkpd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="milkpd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>250-500ml</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="milkpd" class="weui_check" id="milkpd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="milkpd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>500ml以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="milkpd" class="weui_check" id="milkpd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日白酒量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="liquorpd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="liquorpd" id="liquorpd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="liquorpd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1-50g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="liquorpd" id="liquorpd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="liquorpd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>51-100g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="liquorpd" class="weui_check" id="liquorpd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="liquorpd4">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>151-200g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="liquorpd" class="weui_check" id="liquorpd4" value="4">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="liquorpd5">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>201-250g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="liquorpd" class="weui_check" id="liquorpd5" value="5">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="liquorpd6">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>250g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="liquorpd" class="weui_check" id="liquorpd6" value="6">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="liquorpd7">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>500g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="liquorpd" class="weui_check" id="liquorpd7" value="7">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日饮茶种类</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="teatype1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>无</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="teatype" id="teatype1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="teatype2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>花茶</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="teatype" id="teatype2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="teatype3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>绿茶</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="teatype" class="weui_check" id="teatype3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="teatype4">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>红茶</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="teatype" class="weui_check" id="teatype4" value="4">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="teatype5">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>乌龙茶</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="teatype" class="weui_check" id="teatype5" value="5">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="teatype6">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>普洱茶</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="teatype" class="weui_check" id="teatype6" value="6">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="teatype7">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>咖啡</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="teatype" class="weui_check" id="teatype7" value="7">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="teatype8">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>含糖饮料</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="teatype" class="weui_check" id="teatype8" value="8">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="teatype9">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>苏打</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="teatype" class="weui_check" id="teatype9" value="9">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日红酒量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="wirepd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="wirepd" id="wirepd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="wirepd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1-50g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="wirepd" id="wirepd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="wirepd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>51-100g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="wirepd" class="weui_check" id="wirepd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="wirepd4">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>151-200g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="wirepd" class="weui_check" id="wirepd4" value="4">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="wirepd5">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>201-250g</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="wirepd" class="weui_check" id="wirepd5" value="5">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="wirepd6">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>250g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="wirepd" class="weui_check" id="wirepd6" value="6">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="wirepd7">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>500g以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="wirepd" class="weui_check" id="wirepd7" value="7">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">每日饮茶量</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="teapd1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>0</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="teapd" id="teapd1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="teapd2">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>1杯</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="teapd" id="teapd2" value="2">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="teapd3">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>2杯</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="teapd" class="weui_check" id="teapd3" value="3">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="teapd4">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>3杯</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="teapd" class="weui_check" id="teapd4" value="4">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="teapd5">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>4杯</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="teapd" class="weui_check" id="teapd5" value="5">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="teapd6">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>5杯即以上</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="teapd" class="weui_check" id="teapd6" value="6">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <br>
+        <a id="button" href="javascript:;" class="weui_btn weui_btn_primary" style="width: 95%">提交</a>
+        <br>
+    </form>
+</body>
+
+</html>

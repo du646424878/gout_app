@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="com.du.gout_app.activity.time_set_Activity">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="48dp"
+       android:background="@color/title_bar"
+       android:gravity="right">
+
+       <TextView
+           android:id="@+id/txt_title"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginRight="100dp"
+           style="@style/txt_titleStyle1"
+           android:text="@string/app_name"
+           android:layout_gravity="center"
+           />
+<ImageView
+    android:id="@+id/add_reminder"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:src="@mipmap/add"
+    android:layout_marginRight="5dp"
+    android:layout_gravity="center"
+    />
+   </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/set_time"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_gravity="right"
+        android:orientation="horizontal"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/reminder_list"
+            android:background="#eeeeee"
+            />
+    </LinearLayout>
+</LinearLayout>

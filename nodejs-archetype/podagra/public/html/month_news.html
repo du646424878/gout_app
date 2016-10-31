@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/wechatmain.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/weui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#button").click(function() {
+                var array = {
+                    diseasecourse: "",
+                    isjointpain: "",
+                    painpart: "",
+                    isjointswelling: "",
+                    swellingpart: "",
+                    isdietchange: "",
+                    isexercise: "",
+                    esr: "",
+                    crp: "",
+                    ua: "",
+                    ganyousanzhi: "",
+                    totalcholesterol: "",
+                    tmdasajzym: "",
+                    basajzym: "",
+                    cr: "",
+                    cbc: "",
+                    gcsdosage: "",
+                    colcdosage: "",
+                    allopurinoldosage: "",
+                    benzbromaronedosage: "",
+                    nsaiddosage: "",
+                    febuxostatdosage: ""
+                }
+                var array1 = {
+                    isjointpain: "",
+                    isjointswelling: "",
+                    isdietchange: "",
+                    isexercise: ""
+                }
+                var array2 = {
+                    diseasecourse: "",
+                    esr: "",
+                    crp: "",
+                    ua: "",
+                    ganyousanzhi: "",
+                    totalcholesterol: "",
+                    tmdasajzym: "",
+                    basajzym: "",
+                    cr: "",
+                    cbc: "",
+                    gcsdosage: "",
+                    colcdosage: "",
+                    allopurinoldosage: "",
+                    benzbromaronedosage: "",
+                    nsaiddosage: "",
+                    febuxostatdosage: ""
+                }
+                for (var key in array) {
+                    array[key] = $("#" + key).val();
+                }
+                for (var key in array1) {
+                    array[key] = $("input[name=" + key + "]:checked").val();
+                }
+                for (var key in array) {
+                    if ($("input[name=" + key + "]").val() == undefined || $("input[name=" + key + "]").val() == "") {
+                        $.weui.topTips('您有未选择的选项', {
+                            duration: 1000
+                        });
+                        var t = $('#' + key).offset().top;
+                        $(window).scrollTop(t);
+                        return false;
+                    }
+                }
+                for (var key in array2) {
+                    if (isNaN(parseFloat(array[key]))) {
+                        $.weui.topTips('输入错误', {
+                            duration: 1000
+                        });
+                        var t = $('#' + key).offset().top;
+                        $(window).scrollTop(t);
+                        return false;
+                    }
+                }
+
+                $.post("/admin/records/addcurrentusermonthlyrecord", {
+                        jsondata: JSON.stringify(array)
+                    },
+                    function(data, status) {
+                        if (data.success) {
+                            $.weui.toast('提交成功', {
+                                duration: 1000
+                            });
+                            window.location.href = "../html/month_news_list.html"
+                        } else {
+                            alert("提交失败")
+                        }
+                    }, "json");
+
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="weui_cells_title">
+        <h1 class="page_title">每月信息</h1>
+    </div>
+    <form>
+        <div class="weui_cells_title">病程（天）</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="diseasecourse" id="diseasecourse" class="weui_input" type="number">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">是否关节痛</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="isjointpain1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>痛</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="isjointpain" id="isjointpain1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="isjointpain0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>不痛</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="isjointpain" class="weui_check" id="isjointpain0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">关节疼痛部位</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="painpart" id="painpart" class="weui_input" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">是否关节肿胀</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="isjointswelling1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>肿胀</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="isjointswelling" id="isjointswelling1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="isjointswelling0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>不肿胀</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="isjointswelling" class="weui_check" id="isjointswelling0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">关节肿胀部位</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="swellingpart" id="swellingpart" class="weui_input" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">疼痛发作前有无进食变化</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="isdietchange1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>有</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="isdietchange" id="isdietchange1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="isdietchange0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>无</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="isdietchange" class="weui_check" id="isdietchange0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">疼痛发作前有无运动</div>
+        <div class="weui_cells weui_cells_radio">
+            <label class="weui_cell weui_check_label" for="isexercise1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>有</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="isexercise" id="isexercise1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            <label class="weui_cell weui_check_label" for="isexercise0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>无</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="isexercise" class="weui_check" id="isexercise0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+        </div>
+        <div class="weui_cells_title">血沉（mm/h）</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="esr" id="esr" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">C反应蛋白（mg/dL）</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="crp" id="crp" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">尿酸（umol/L）</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="ua" id="ua" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">甘油三酯（mmol/L）</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="ganyousanzhi" id="ganyousanzhi" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">总胆固醇（mmol/L）</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="totalcholesterol" id="totalcholesterol" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">天门冬氨酸氨基转移酶（U/L）</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="tmdasajzym" id="tmdasajzym" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">丙氨酸氨基转移酶（U/L）</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="basajzym" id="basajzym" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">肌酐（umol/L）</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="cr" id="cr" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">血常规</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="cbc" id="cbc" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+
+        <div class="weui_cells_title">糖皮质激素剂量</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="gcsdosage" id="gcsdosage" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">糖皮质激素剂量</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="colcdosage" id="colcdosage" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">别嘌醇剂量</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="allopurinoldosage" id="allopurinoldosage" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">苯溴马隆剂量</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="benzbromaronedosage" id="benzbromaronedosage" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">非甾体抗炎药剂量</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="nsaiddosage" id="nsaiddosage" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <div class="weui_cells_title">非布司他剂量</div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input name="febuxostatdosage" id="febuxostatdosage" class="weui_input" type="number" maxlength="10">
+                </div>
+            </div>
+        </div>
+        <br>
+        <a id="button" href="javascript:;" class="weui_btn weui_btn_primary" style="width: 95%">提交</a>
+        <br>
+    </form>
+
+</body>
+
+</html>

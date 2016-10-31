@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ueditor demo</title>
+    <link href="/css/logindemo/bootstrap.css" rel="stylesheet">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script>
+        function getUrlParam(name) {
+            //构造一个含有目标参数的正则表达式对象  
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            //匹配目标参数  
+            var r = window.location.search.substr(1).match(reg);
+            //返回参数值  
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        }
+        $(document).ready(function() {
+            $("#submit").click(function() {
+                $('#myModal').modal('hide');
+                var essay_content = ue.getContent();
+                var essay_title = $("#title").val();
+                $.post("/app/news/add", {
+                        jsondata: JSON.stringify({
+                            "title": essay_title,
+                            "content": essay_content
+                        })
+                    },
+                    function(data, status) {
+                        if (status) {
+                            alert("添加成功");
+                        } else {
+                            alert("添加失败");
+                        }
+                    }, "json");
+            })
+            var id = getUrlParam('id');
+            $.post("/app/news/get/" + id,
+                function(data, status) {
+                    var eassy = data.message["content"];
+                    $("#title").attr("value", data.message["title"])
+                    ue.addListener("ready", function() {
+                        // editor准备好之后才可以使用
+                        ue.setContent(eassy.toString());
+                    });
+                }, "json");
+        })
+    </script>
+</head>
+
+<body>
+    <div>
+        <!-- 加载编辑器的容器 -->
+        <script id="container" name="content" type="text/plain">
+        </script>
+        <!-- 配置文件 -->
+        <script type="text/javascript" src="/UEditor/ueditor.config.js"></script>
+        <!-- 编辑器源码文件 -->
+        <script type="text/javascript" src="/UEditor/ueditor.all.js"></script>
+        <!-- 实例化编辑器 -->
+        <script type="text/javascript">
+            var ue = UE.getEditor('container', {
+                toolbars: [
+                    [
+                        'fullscreen', 'source', '|', 'undo', 'redo', '|',
+                        'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                        'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+                        'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+                        'directionalityltr', 'directionalityrtl', 'indent', '|',
+                        'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+                        'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                        'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
+                        'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+                        'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
+                        'print', 'preview', 'searchreplace', 'drafts', 'help', 'commit',
+                    ]
+                ]
+            });
+            baidu.editor.commands['commit'] = {
+                execCommand: function() {
+                    $('#myModal').modal({
+                        show: true,
+                        backdrop: true
+                    });
+                    return true;
+                },
+                queryCommandState: function() {}
+            };
+        </script>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="3" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                      &times;
+                </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                   新闻标题
+                </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="title">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                    <button id="submit" type="button" class="btn btn-primary">
+                   提交
+                </button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link href="/css/logindemo/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/easyui/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/css/easyui//icon.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.easyui.min.js"></script>
+    <script src="/js/news_information.js"></script>
+</head>
+
+<body>
+    <table id="tt" style="width:100%;height:100%" pageSize="20" url="/admin/db/appnews/gets" title="新闻管理" data-options="toolbar:'#toolbar',fit:true" iconCls="icon-save" rownumbers="true" pagination="true" singleSelect="true">
+        <thead>
+            <div id="toolbar">
+                <button id="editnew" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="edit_news()">编辑信息</button>
+                <button id="addnew" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="new_news()">增加新闻</button>
+                <button id="changenew" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="change_news()">修改新闻</button>
+                <button id="deletenew" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="deletenew()">删除新闻</button>
+            </div>
+            <tr>
+                <th field="id">文章ID</th>
+                <th field="title">文章标题</th>
+                <th field="intro">文章介绍</th>
+                <th field="url">文章地址</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="dlg" class="easyui-dialog" fitColumns="true" style="width:400px;height:280px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
+        <form id="fm" method="post">
+            <div class="fitem">
+                <label style="width: 15%">文章ID</label>
+                <input name="id" class="easyui-validatebox" required="true">
+            </div>
+            <div class="fitem">
+                <label style="width: 15%">文章标题</label>
+                <input name="title" class="easyui-validatebox" required="true">
+            </div>
+            <div class="fitem">
+                <label style="width: 15%">文章介绍</label>
+                <input name="intro" class="easyui-validatebox" required="true">
+            </div>
+            <div class="fitem">
+                <label style="width: 15%">文章地址</label>
+                <input name="url" class="easyui-validatebox" required="false">
+            </div>
+            <div class="fitem">
+                <label style="width: 15%">创建时间</label>
+                <input name="createdate" class="easyui-validatebox" required="false">
+            </div>
+        </form>
+    </div>
+    <div id="dlg-buttons">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="save_news()">Save</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+    </div>
+
+
+</body>
+
+</html>

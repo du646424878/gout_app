@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="../css/logindemo/bootstrap.css" rel="stylesheet">
+	<script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/extendPagination.js"></script>
+    <script>
+    	function getUrlParam(name){  
+	    //构造一个含有目标参数的正则表达式对象  
+		    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");  
+		    //匹配目标参数  
+		    var r = window.location.search.substr(1).match(reg);  
+		    //返回参数值  
+		    if (r!=null){ 
+		    	return unescape(r[2]);
+		    }
+	    	return null;  
+		}  
+    	$(document).ready(function(){
+	    	
+			var amount=0;
+			var array1=new Array();
+			var userid1=getUrlParam('userid');
+			alert(userid1);
+			$.get("../admin/records/weekview/gets/4/0/2", function(data, status) {
+                	if(status){
+			            $.each(data.message,function(g,item){
+			                if(status){
+			                	alert(item.createtime);
+			                	array1[g]=item;
+			                	amount=g;
+			                }
+			                else{
+			                	alert('加载失败');
+			                }
+			            })
+		        	}
+		        	else{
+		        		alert('加载失败');
+		        	}
+	            var setence='<table class="table table-bordered">';
+	            for (genre in array){
+		            for (var i = 0; i <=amount; i++) {
+	        			if(i==0){
+	        				setence=setence+'<tr><td>'+array[genre]+'</td>';
+	        			}
+	        			setence=setence+'<td>'+array1[i][genre]+'</td>';
+	        		}
+	        		setence=setence+'</tr>'
+	        		
+	            }
+        		$("#part").append(setence+'</table>');
+	        });
+        	var array={
+				'创建时间':'周次',
+	            '主食':'每日主食',
+	            '主食量':'主食量(g)',
+	            '口味习惯':'口味习惯',
+	            '饮食偏好':'饮食偏好',
+	            '饮酒习惯':'饮酒习惯',
+	            '每日鱼肉':'每日鱼肉量(g)',
+	            '每日海鲜':'每日海鲜量(g)',
+	            '每日牛肉':'每日牛肉量(g)',
+	            '每日猪肉':'每日猪肉量(g)',
+	            '每日家禽':'每日家禽量(g)',
+	            '每日内脏':'每日内脏量(g)',
+	            '每日蔬菜':'每日绿蔬量(g)',
+	            '每日豆制品':'每日豆制品量(g)',
+	            '每日鸡蛋':'每日鸡蛋量(个)',
+	            '每日坚果':'每日坚果量(个)',
+	            '每日水果':'每日水果量(个)',
+	            '每日食盐':'每日食盐量(g)',
+	            '每日啤酒':'每日啤酒量(ml)',
+	            '每日奶制品':'每日奶量(ml)',
+	            '每日白酒':'每日白酒量(g)',
+	            '每日红酒':'每日红酒量(g)',
+	            '饮茶种类':'每日饮茶种类',
+	            '每日饮茶':'每日饮茶量(杯)'
+        	}
+    	})
+    </script>
+   
+</head>
+<body>
+	<div id="part">
+		
+	</div>
+</body>
+</html>

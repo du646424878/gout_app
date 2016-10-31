@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.Weather_activity">
+    <item
+        android:id="@+id/weather"
+        android:orderInCategory="90"
+        android:title=""
+        android:icon="@mipmap/weather"
+        app:showAsAction="ifRoom|withText"
+        android:textSize="16dp"
+        android:textColor="@color/white"/>
+</menu>

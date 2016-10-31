@@ -1,0 +1,8 @@
+﻿数据库地址
+suntao.science
+数据库名
+gout
+用户名
+gout
+密码
+uestcgout

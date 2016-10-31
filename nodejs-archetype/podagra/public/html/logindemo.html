@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>login demo</title>
+    <link href="/css/logindemo/bootstrap.css" rel="stylesheet">
+    <link href="/css/logindemo/main.css" rel="stylesheet" type="text/css" />
+    <link href="/css/logindemo/index.css" rel="stylesheet" type="text/css" />
+    <link href="/css/logindemo/detail.css" rel="stylesheet" type="text/css" />
+    <link href="/css/logindemo/user.css" rel="stylesheet" type="text/css" />
+    <link href="/css/logindemo/announcement.css" rel="stylesheet" type="text/css" />
+    <link href="/css/logindemo/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/logindemo.js"></script>
+</head>
+
+<body>
+    <div class="content">
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="wrapper-intro col-xs-0 col-sm-6 col-md-8 col-lg-8">
+                        <img class="suifang" style="width: 250px; margin-top: 38px; height:200px" src="../images/suifang.jpg" />
+                    </div>
+                    <div class="log-or-sign col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                        <ul class="nav nav-tabs" id="tab-sl">
+                            <li role="presentation" class="active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab" id="tri-login">登录</a></li>
+                            <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab" id="tri-register">注册</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <!-- Tab Log in -->
+                            <form role="tabpanel" class="tab-pane fade in active" id="login" onsubmit="return false;">
+                                <div class="tab-info" id="login-info"></div>
+                                <label for="login-email" class="sr-only">用户名</label>
+                                <input id="login-email" class="form-control" name="username" placeholder="用户名">
+                                <label for="login-password" class="sr-only">密码</label>
+                                <input type="password" id="login-password" class="form-control" placeholder="密码" required name="password">
+                                <div class="checkbox">
+                                    <label class="f-white">
+                                <input type="checkbox" id="login-remember" checked> 记住我
+                                </label>
+                                    <a class="pull-right forgot" href="/recover">忘记密码</a>
+                                </div>
+                                <button id="submit" class="btn btn-lg btn-primary btn-block login">登录</button>
+                            </form>
+                            <!-- Tab Register -->
+                            <form role="tabpanel" class="tab-pane fade" id="register" onsubmit="return false;">
+                                <div class="tab-info" id="register-info"></div>
+                                <label for="register-email" class="sr-only">用户名</label>
+                                <input id="register-email" class="form-control" placeholder="用户名" required autofocus>
+                                <label for="register-password" class="sr-only">密码</label>
+                                <input type="password" id="register-password" class="form-control" placeholder="密码" required>
+                                <button id="regist" class="btn btn-lg btn-primary btn-block register">注册</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <p style="width: 100%;text-align: center;font-size: 20px">痛风随访系统</p>
+            <p style="width: 100%;text-align: center;font-size: 20px">版权所有 Copyright © 2016 UESTC</p>
+        </div>
+</body>
+</div>
+
+</body>
+
+
+</html>

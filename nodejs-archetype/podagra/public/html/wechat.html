@@ -1,0 +1,171 @@
+<html>
+
+<head>
+    <title>微信原型</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/wechatmain.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/weui.min.js"></script>
+    <script src="/js/wechat.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="weui_tab">
+            <div class="weui_tab_bd">
+                <div class="weui_tab_bd_item" style="display: none;">
+                    <div class="bd spacing">
+                        <div class="hd">
+                            <h1 class="page_title">主页</h1>
+                        </div>
+                        <br>
+                        <br>
+                        <a href="javascript:;" class="weui_btn weui_btn_default">添加每周习惯</a>
+                        <a href="javascript:;" class="weui_btn weui_btn_default">添加每月化验</a>
+                        <a href="javascript:;" class="weui_btn weui_btn_default">Bug反馈</a>
+                        <a href="javascript:;" class="weui_btn weui_btn_default">其他</a>
+                    </div>
+                </div>
+                <div class="weui_tab_bd_item" style="display: none;">
+                    <div class="hd">
+                        <h1 class="page_title">日常</h1>
+                    </div>
+                    <div class="weui_panel weui_panel_access">
+                        <div class="weui_panel_hd">每周诊疗信息</div>
+                        <div class="weui_panel_bd">
+                            <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
+                                <div class="weui_media_bd">
+                                    <h4 class="weui_media_title">2016年5月14日20:28:58</h4>
+                                    <p class="weui_media_desc">体重....身高....</p>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
+                                <div class="weui_media_bd">
+                                    <h4 class="weui_media_title">2016年5月14日20:28:58</h4>
+                                    <p class="weui_media_desc">体重....身高....</p>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
+                                <div class="weui_media_bd">
+                                    <h4 class="weui_media_title">2016年5月14日20:28:58</h4>
+                                    <p class="weui_media_desc">体重....身高....</p>
+                                </div>
+                            </a>
+                        </div>
+                        <a class="weui_panel_ft" href="javascript:void(0);">查看更多</a>
+                        <div class="weui_panel_hd">每月化验信息</div>
+                        <div class="weui_panel_bd">
+                            <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
+                                <div class="weui_media_bd">
+                                    <h4 class="weui_media_title">2016年5月14日20:28:58</h4>
+                                    <p class="weui_media_desc">体重....身高....</p>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
+                                <div class="weui_media_bd">
+                                    <h4 class="weui_media_title">2016年4月14日20:28:58</h4>
+                                    <p class="weui_media_desc">体重....身高....</p>
+                                </div>
+                            </a>
+                        </div>
+                        <a class="weui_panel_ft" href="javascript:void(0);">查看更多</a>
+                    </div>
+                </div>
+                <div class="weui_tab_bd_item" style="display: none;">
+                    <div class="hd">
+                        <h1 class="page_title">我</h1>
+                    </div>
+                    <div class="weui_cells_title">用户信息</div>
+                    <div class="weui_cells">
+                        <div class="weui_cell">
+                            <div class="weui_cell_bd weui_cell_primary">
+                                <p>用户名</p>
+                            </div>
+                            <div class="weui_cell_ft" id="username">
+                                未初始化
+                            </div>
+                        </div>
+                        <div class="weui_cell">
+                            <div class="weui_cell_bd weui_cell_primary">
+                                <p>真实姓名</p>
+                            </div>
+                            <div class="weui_cell_ft" id="realname">
+                                未初始化
+                            </div>
+                        </div>
+                        <div class="weui_cell">
+                            <div class="weui_cell_bd weui_cell_primary">
+                                <p>注册时间</p>
+                            </div>
+                            <div class="weui_cell_ft" id="registerdate">
+                                未初始化
+                            </div>
+                        </div>
+                        <div class="weui_cell">
+                            <div class="weui_cell_bd weui_cell_primary">
+                                <p>年龄</p>
+                            </div>
+                            <div class="weui_cell_ft" id="age">
+                                未初始化
+                            </div>
+                        </div>
+                        <div class="weui_cell">
+                            <div class="weui_cell_bd weui_cell_primary">
+                                <p>体重</p>
+                            </div>
+                            <div class="weui_cell_ft" id="weight">
+                                未初始化
+                            </div>
+                        </div>
+                        <div class="weui_cell">
+                            <div class="weui_cell_bd weui_cell_primary">
+                                <p>身高</p>
+                            </div>
+                            <div class="weui_cell_ft" id="height">
+                                未初始化
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="bd spacing">
+                            <a href="javascript:;" class="weui_btn weui_btn_primary">修改信息</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="weui_tabbar">
+                <a href="javascript:;" class="weui_tabbar_item">
+                    <div class="weui_tabbar_icon">
+                        <img src="/images/icon_nav_button.png" alt="">
+                    </div>
+                    <p class="weui_tabbar_label">首页</p>
+                </a>
+                <a href="javascript:;" class="weui_tabbar_item">
+                    <div class="weui_tabbar_icon">
+                        <img src="/images/icon_nav_msg.png" alt="">
+                    </div>
+                    <p class="weui_tabbar_label">日常</p>
+                </a>
+                <a href="javascript:;" class="weui_tabbar_item">
+                    <div class="weui_tabbar_icon">
+                        <img src="/images/icon_nav_actionSheet.png" alt="">
+                    </div>
+                    <p class="weui_tabbar_label">我</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // codepen 没办法直接在 body 标签加属性，所以用这里用 js 给 body 添加 ontouchstart 属性来触发 :active
+    document.body.setAttribute('ontouchstart', '');
+
+    $(function() {
+
+        // tab
+        $('.weui_tab').tab();
+    });
+</script>
+
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>修改用户信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/wechatmain.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/weui.min.js"></script>
+    <script src="/js/change_userinfo.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="weui_cells_title">
+            <h1 class="page_title">修改用户信息</h1>
+        </div>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">姓名</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="realname" class="weui_input" type="text" placeholder="请输入姓名">
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">年龄</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="age" class="weui_input" type="number" placeholder="请输入年龄">
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">体重(kg)</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="weight" class="weui_input" type="number" placeholder="请输入体重">
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">身高(cm)</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="height" class="weui_input" type="number" placeholder="请输入身高">
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">民族</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="nation" class="weui_input" type="text" placeholder="请输入民族">
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">籍贯</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="nativeplace" class="weui_input" type="text" placeholder="请输入籍贯">
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">工作</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="job" class="weui_input" type="text" placeholder="请输入工作">
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd">
+                    <label class="weui_label">邮箱</label>
+                </div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="email" class="weui_input" type="email" placeholder="请输入邮箱">
+                </div>
+            </div>
+
+
+            <div class="weui_cells_title">有无痛风石形成</div>
+            <div class="weui_cells weui_cells_radio">
+                <label class="weui_cell weui_check_label" for="havetophus1">
+                <div class="weui_cell_bd weui_cell_primary">
+                  <p>有</p>
+                 </div>
+                 <div class="weui_cell_ft">
+                     <input type="radio" class="weui_check" name="havetophus" id="havetophus1" value="1">
+                      <span class="weui_icon_checked"></span>
+                  </div>
+          </label>
+                <label class="weui_cell weui_check_label" for="havetophus0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>无</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="havetophus" class="weui_check" id="havetophus0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            </div>
+            <div class="weui_cells_title">有无泌尿结石</div>
+            <div class="weui_cells weui_cells_radio">
+                <label class="weui_cell weui_check_label" for="b_modeus1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>有</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="b_modeus" id="b_modeus1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+                <label class="weui_cell weui_check_label" for="b_modeus0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>无</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="b_modeus" class="weui_check" id="b_modeus0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            </div>
+            <div class="weui_cells_title">有无高血压</div>
+            <div class="weui_cells weui_cells_radio">
+                <label class="weui_cell weui_check_label" for="havehypertension1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>有</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="havehypertension" id="havehypertension1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+                <label class="weui_cell weui_check_label" for="havehypertension0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>无</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="havehypertension" class="weui_check" id="havehypertension0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            </div>
+            <div class="weui_cells_title">有无糖尿病</div>
+            <div class="weui_cells weui_cells_radio">
+                <label class="weui_cell weui_check_label" for="havediabetes1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>有</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="havediabetes" id="havediabetes1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+                <label class="weui_cell weui_check_label" for="havediabetes0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>无</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="havediabetes" class="weui_check" id="havediabetes0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            </div>
+            <div class="weui_cells_title">有无心脏病</div>
+            <div class="weui_cells weui_cells_radio">
+                <label class="weui_cell weui_check_label" for="haveheartdisease1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>有</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="haveheartdisease" id="haveheartdisease1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+                <label class="weui_cell weui_check_label" for="haveheartdisease0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>无</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="haveheartdisease" class="weui_check" id="haveheartdisease0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            </div>
+            <div class="weui_cells_title">有无高脂血症</div>
+            <div class="weui_cells weui_cells_radio">
+                <label class="weui_cell weui_check_label" for="havehlp1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>有</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="havehlp" id="havehlp1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+                <label class="weui_cell weui_check_label" for="havehlp0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>无</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="havehlp" class="weui_check" id="havehlp0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            </div>
+            <div class="weui_cells_title">有无其他未提及疾病</div>
+            <div class="weui_cells weui_cells_radio">
+                <label class="weui_cell weui_check_label" for="haveotherdisease1">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>有</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" class="weui_check" name="haveotherdisease" id="haveotherdisease1" value="1">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+                <label class="weui_cell weui_check_label" for="haveotherdisease0">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <p>无</p>
+              </div>
+              <div class="weui_cell_ft">
+                  <input type="radio" name="haveotherdisease" class="weui_check" id="haveotherdisease0" value="0">
+                  <span class="weui_icon_checked"></span>
+              </div>
+          </label>
+            </div>
+            <div class="weui_cells_title">高血压药物</div>
+            <div class="weui_cells weui_cells_form">
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="hypertensionmedicine" id="hypertensionmedicine" class="weui_input" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="weui_cells_title">糖尿病药物</div>
+            <div class="weui_cells weui_cells_form">
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="diabetesmedicine" id="diabetesmedicine" class="weui_input" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="weui_cells_title">心脏病药物</div>
+            <div class="weui_cells weui_cells_form">
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="heartdiseasemedicine" id="heartdiseasemedicine" class="weui_input" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="weui_cells_title">高脂血症药物</div>
+            <div class="weui_cells weui_cells_form">
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="hlpmedicine" id="hlpmedicine" class="weui_input" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="weui_cells_title">其他病症药物</div>
+            <div class="weui_cells weui_cells_form">
+                <div class="weui_cell">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input name="otherdiseasemedicine" id="otherdiseasemedicine" class="weui_input" type="text">
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <a id="submit" class="weui_btn weui_btn_primary" style="width: 95%">提交</a><br>
+    </div>
+
+</body>
+
+</html>

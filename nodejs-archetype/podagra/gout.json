@@ -1,0 +1,12 @@
+{
+    "apps": [{
+        "name": "gout",
+        "script": "bin/www",
+        "min_uptime": "15000",
+        "max_restarts": 5,
+        "watch": false,
+        "env": {
+            "NODE_ENV": "production"
+        }
+    }]
+}

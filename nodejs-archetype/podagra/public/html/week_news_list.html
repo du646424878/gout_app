@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/wechatmain.css">
+    <title>最近周信息</title>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/weui.min.js"></script>
+    <script>
+        function hiden() {
+            $("#img1").hide();
+        }
+        $(document).ready(function() {
+            window.onload = hiden();
+            $.post("/admin/records/gettargetuserweekrecordlist", {
+                jsondata: JSON.stringify({
+                    'start': 0,
+                    'end': 5
+                })
+            }, function(data, status) {
+                $.each(data.message, function(g, item) {
+                    if (status) {
+                        t = new Date(item.createtime);
+                        var year = t.getFullYear();
+                        var month = t.getMonth() + 1; //修正month的偏移
+                        var day = t.getDate();
+                        $("#content1").append('<a2 class="weui_btn weui_btn_default" style="margin-bottom:10px;margin-top:0px" id="number' + g + '">' + year + "年" + month + "月" + day + '日</a2>');
+                        $("#number" + g).click(function() {
+                            window.location.href = "../html/week_news_check.html?habitid=" + item.habitid
+                        })
+                    }
+                });
+            });
+        })
+    </script>
+</head>
+
+<body style="height: 100%;width: 100%">
+    <div data-role="page" id="page1" style="height: 100%;width: 100%">
+        <div data-role="header">
+            <h1 class="page_title">最近周信息</h1>
+        </div>
+        <div class="weui_cells_title" id="content1">
+        </div>
+    </div>
+</body>
+
+</html>
